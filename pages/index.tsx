@@ -13,8 +13,8 @@ import axios from "axios";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
-    const [song, setSong] = useState("All Of Me");
-    const [author, setAuthor] = useState("John Legend");
+    const [song, setSong] = useState("");
+    const [author, setAuthor] = useState("");
 
     const { isFetching, error, data, refetch }: any = useQuery(
         "lyrics",
@@ -87,7 +87,7 @@ const Home: NextPage = () => {
                     </LoadingButton>
                 </div>
                 <div className={styles.home__lyrics}>
-                    <Typography variant="h5" component="pre">
+                    <Typography variant="h6" component="pre">
                         {error?.message ===
                         "Request failed with status code 404" ? (
                             <h4>We have not found the lyrics of this song</h4>
