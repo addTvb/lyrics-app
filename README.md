@@ -33,3 +33,13 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+######################
+Hello everyone, I recently wrote a small web application to find lyrics. You can try to find the lyrics of your favorite song here. Also, I would be grateful for any comments and suggestions for this application.
+
+You can find the source code here.
+
+stack:
+Typescript
+Next.js
+Material UI
+react-query with axios
