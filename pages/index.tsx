@@ -36,6 +36,11 @@ const Home: NextPage = () => {
     const handleSearch = () => {
         refetch();
     };
+    const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>): void => {
+        if (event.key === "Enter") {
+            refetch();
+        }
+    };
     const handleChangeSong = (event: any) => {
         setSong(event.target.value);
     };
@@ -55,11 +60,12 @@ const Home: NextPage = () => {
             </header>
 
             <main className={styles.home__main}>
-                <div className={styles.home__search}>
+                <form className={styles.home__search}>
                     <div className={styles.home__inputs}>
                         <TextField
                             value={song}
                             onChange={handleChangeSong}
+                            onKeyDown={onKeyDown}
                             id="song-input"
                             label="Enter song name"
                             variant="outlined"
@@ -69,6 +75,7 @@ const Home: NextPage = () => {
                         <TextField
                             value={author}
                             onChange={handleChangeAuthor}
+                            onKeyDown={onKeyDown}
                             id="author-input"
                             label="Enter author name"
                             variant="outlined"
@@ -77,15 +84,17 @@ const Home: NextPage = () => {
                         />
                     </div>
                     <LoadingButton
-                        onClick={handleSearch}
+                        onSubmit={handleSearch}
                         endIcon={<SearchRoundedIcon />}
                         loading={isFetching}
                         loadingPosition="end"
                         variant="contained"
+                        type="submit"
                     >
                         Search
                     </LoadingButton>
-                </div>
+                </form>
+                {/* Lyrics Content */}
                 <div className={styles.home__lyrics}>
                     <Typography variant="h6" component="pre">
                         {error?.message ===
