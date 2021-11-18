@@ -32,6 +32,20 @@ const Home: NextPage = () => {
 
         return data;
     }
+    // Format lyrics
+    const capitalize = (string: string): string => {
+        return string.trim().replace(/\w\S*/g, (w) =>
+            w.replace(/^\w/, (c) => c.toUpperCase())
+        );
+    };
+    const removeFirstRow = (lyric: string): string => {
+        return lyric?.replace(
+            `Paroles de la chanson ${capitalize(song)} par ${capitalize(
+                author
+            )}`,
+            ""
+        );
+    };
     // handlers
     const handleSearch = () => {
         refetch();
@@ -69,7 +83,6 @@ const Home: NextPage = () => {
                             id="song-input"
                             label="Enter song name"
                             variant="outlined"
-                            placeholder="Example: All Of Me"
                             fullWidth
                         />
                         <TextField
@@ -79,12 +92,11 @@ const Home: NextPage = () => {
                             id="author-input"
                             label="Enter author name"
                             variant="outlined"
-                            placeholder="Example: John Legend"
                             fullWidth
                         />
                     </div>
                     <LoadingButton
-                        onSubmit={handleSearch}
+                        onClick={handleSearch}
                         endIcon={<SearchRoundedIcon />}
                         loading={isFetching}
                         loadingPosition="end"
@@ -95,20 +107,28 @@ const Home: NextPage = () => {
                     </LoadingButton>
                 </div>
                 {/* Lyrics Content */}
-                <div className={styles.home__lyrics}>
-                    <Typography variant="h6" component="pre">
+                <div className={styles.home__lyrics_wrapper}>
+                    <Typography variant="h6" component="pre" className={styles.home__lyrics}>
                         {error?.message ===
                         "Request failed with status code 404" ? (
                             <h4>We have not found the lyrics of this song</h4>
                         ) : (
-                            data?.lyrics
+                            removeFirstRow(data?.lyrics)
                         )}
                     </Typography>
                 </div>
             </main>
 
             <footer className={styles.home__footer}>
-                Created by <a href="https://github.com/addTvb">addTvb</a>
+                Created by {"<"}
+                <a
+                    href="https://github.com/addTvb"
+                    className={styles.home__author_link}
+                >
+                    {" "}
+                    addTvb
+                </a>{" "}
+                {"/>"}
             </footer>
         </div>
     );
