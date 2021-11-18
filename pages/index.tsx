@@ -60,7 +60,7 @@ const Home: NextPage = () => {
             </header>
 
             <main className={styles.home__main}>
-                <form className={styles.home__search}>
+                <div className={styles.home__search}>
                     <div className={styles.home__inputs}>
                         <TextField
                             value={song}
@@ -93,7 +93,7 @@ const Home: NextPage = () => {
                     >
                         Search
                     </LoadingButton>
-                </form>
+                </div>
                 {/* Lyrics Content */}
                 <div className={styles.home__lyrics}>
                     <Typography variant="h6" component="pre">
